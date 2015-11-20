@@ -3,3 +3,4 @@
 redis-pubsub/.classpath
 redis-pubsub/.gitignore
 redis-pubsub/.springBeans
+redis-pubsub/log
