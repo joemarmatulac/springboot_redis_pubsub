@@ -1,0 +1,5 @@
+.project
+.settings/
+redis-pubsub/.classpath
+redis-pubsub/.gitignore
+redis-pubsub/.springBeans

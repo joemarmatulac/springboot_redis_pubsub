@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+<!-- 	<property name="LOG_FILE" value="./log/inventory.log" /> -->
+<!-- 	<include resource="org/springframework/boot/logging/logback/base.xml" /> -->
+<!-- 	<logger name="org.springframework.web" level="ERROR" /> -->
+<!-- 	<logger name="org.springframework.boot" level="ERROR" /> -->
+<!-- 	<logger name="org.hibernate" level="ERROR" /> -->
+
+	<appender name="INFO_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <File>./log/info.log</File>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	        <FileNamePattern>inventory_info.%d{yyyy-MM-dd}.log</FileNamePattern>
+	        <maxHistory>10</maxHistory>
+	    </rollingPolicy>
+	
+	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	        <Pattern>%d{dd/MM/yyyy HH:mm:ss} %-4r [%t] %-5p %c - %m%n</Pattern>
+	    </encoder>
+	    
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<appender name="WARN_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <File>./log/warn.log</File>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	        <FileNamePattern>inventory_warn.%d{yyyy-MM-dd}.log</FileNamePattern>
+	        <maxHistory>10</maxHistory>
+	    </rollingPolicy>
+	
+	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	        <Pattern>%d{dd/MM/yyyy HH:mm:ss} %-4r [%t] %-5p %c - %m%n</Pattern>
+	    </encoder>
+	    
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>WARN</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	
+		<appender name="ERROR_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <File>./log/error.log</File>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	        <FileNamePattern>inventory_error.%d{yyyy-MM-dd}.log</FileNamePattern>
+	        <maxHistory>10</maxHistory>
+	    </rollingPolicy>
+	
+	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	        <Pattern>%d{dd/MM/yyyy HH:mm:ss} %-4r [%t] %-5p %c - %m%n</Pattern>
+	    </encoder>
+	    
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	
+		<appender name="SPRING_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <File>./log/inventory.log</File>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	        <FileNamePattern>inventory.%d{yyyy-MM-dd}.log</FileNamePattern>
+	        <maxHistory>10</maxHistory>
+	    </rollingPolicy>
+	
+	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	        <Pattern>%d{dd/MM/yyyy HH:mm:ss} %-4r [%t] %-5p %c - %m%n</Pattern>
+	    </encoder>
+	    
+	    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<logger name="org.springframework.web" level="ERROR" additivity="false">
+		<appender-ref ref="SPRING_APPENDER" />
+	</logger>
+	<logger name="org.springframework.boot" level="ERROR" additivity="false">
+		<appender-ref ref="SPRING_APPENDER" />
+	</logger>
+	<logger name="org.hibernate" level="WARN" additivity="false">
+		<appender-ref ref="SPRING_APPENDER" />
+	</logger>
+
+	<root>
+		<appender-ref ref="SPRING_APPENDER" />
+	</root>
+
+</configuration>
